@@ -8,6 +8,5 @@ namespace technoTest.API.Models.User.Request
         public string Login { get; set; }
         public string Password { get; set; }
         public int UserGroupId { get; set; }
-        public int UserStateId { get; set; }
     }
 }

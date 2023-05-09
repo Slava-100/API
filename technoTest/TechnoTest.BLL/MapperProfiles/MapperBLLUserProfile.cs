@@ -9,6 +9,8 @@ namespace TechnoTest.BLL.MapperProfiles
         public MapperBLLUserProfile() 
         {
             CreateMap<UserEntity, User>().ReverseMap();
+            CreateMap<UserGroupEntity, UserGroup>();
+            CreateMap<UserStateEntity, UserState>();
         }
     }
 }

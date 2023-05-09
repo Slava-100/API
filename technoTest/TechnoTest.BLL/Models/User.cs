@@ -7,6 +7,7 @@ namespace TechnoTest.BLL.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public DateTime CreatedDate { get; set; }
+        public int UserGroupId { get; set; }
         public UserGroup UserGroup { get; set; }
         public UserState UserState { get; set; }
     }

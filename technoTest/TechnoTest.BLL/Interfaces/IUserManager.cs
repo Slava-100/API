@@ -6,5 +6,6 @@ namespace TechnoTest.BLL.Interfaces
     {
         public Task<IEnumerable<User>> GetAllUsersAsync();
         public Task<User> CreateUserAsync(User user);
+        public Task<User> DeleteUserAsync(int userId);
     }
 }

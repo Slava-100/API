@@ -55,5 +55,21 @@ namespace TechnoTest.API.Controllers
             }
         }
 
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteUserAsync([FromRoute] int userId)
+        {
+            try
+            {
+                var callback = await _userManager.DeleteUserAsync(userId);
+                var result = _mapper.Map<UserResponseDto>(callback);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }
