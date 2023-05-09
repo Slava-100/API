@@ -25,8 +25,8 @@ namespace TechnoTest.BLL
                 throw new ObjectNotExistException("Список пользователей пуст");
             }
 
-            var usersDto = await _userRepository.GetAllUsersAsync();
-            var result = _mapper.Map<IEnumerable<User>>(usersDto);
+            var usersEntity = await _userRepository.GetAllUsersAsync();
+            var result = _mapper.Map<IEnumerable<User>>(usersEntity);
 
             return result;
         }
@@ -61,7 +61,7 @@ namespace TechnoTest.BLL
 
         public async Task<User> DeleteUserAsync(int userId)
         {
-            var existUser = await _userRepository.IsUserExistByIdAsync(userId);
+            var existUser = await _userRepository.GetUserExistByIdAsync(userId);
             if (existUser is null)
             {
                 throw new ObjectNotExistException($"Пользователя с id:{userId} не существует");
@@ -76,6 +76,26 @@ namespace TechnoTest.BLL
 
             var callback = await _userRepository.DeleteUserAsync(userId);
             var result = _mapper.Map<User>(callback);
+
+            return result;
+        }
+
+        public async Task<User> GetUserByIdAsync(int userId)
+        {
+            UserEntity userEntity = await _userRepository.GetUserExistByIdAsync(userId);
+            int idStateBlocked = await _userRepository.GetIdStateBlockedAsync();
+
+            if (userEntity is null)
+            {
+                throw new ObjectNotExistException($"Пользователя с id:{userId} не существует");
+            }
+
+            if (userEntity.UserStateId == idStateBlocked)
+            {
+                throw new ObjectNotExistException($"Пользователь с id:{userId} имеет статус:Blocked");
+            }
+
+            var result = _mapper.Map<User>(userEntity);
 
             return result;
         }

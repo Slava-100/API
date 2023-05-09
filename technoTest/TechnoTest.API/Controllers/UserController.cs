@@ -71,5 +71,20 @@ namespace TechnoTest.API.Controllers
             }
         }
 
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetUserByIdAsync([FromRoute] int userId)
+        {
+            try
+            {
+                var user = await _userManager.GetUserByIdAsync(userId);
+                var result = _mapper.Map<UserResponseDto>(user);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -74,10 +74,11 @@ namespace TechnoTest.DAL
             
         }
 
-        public async Task<UserEntity> IsUserExistByIdAsync(int userId)
+        public async Task<UserEntity> GetUserExistByIdAsync(int userId)
         {
             return _context.Users
                     .Include(x => x.UserState)
+                    .Include(x => x.UserGroup)
                     .ToList()
                     .Find(p => p.Id == userId);
         }

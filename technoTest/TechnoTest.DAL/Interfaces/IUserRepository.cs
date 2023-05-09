@@ -10,7 +10,7 @@ namespace TechnoTest.DAL.Interfaces
         public Task<IEnumerable<UserEntity>> GetAllUsersAsync();
         public Task<UserEntity> CreateUserAsync(UserEntity user);
         public Task<bool> IsUserExistAsync(UserEntity? user = null);
-        public Task<UserEntity> IsUserExistByIdAsync(int userId);
+        public Task<UserEntity> GetUserExistByIdAsync(int userId);
         public Task<UserEntity> DeleteUserAsync(int userId);
         public Task<int> GetIdStateBlockedAsync();
         public Task<int> GetIdStateActiveAsync();
