@@ -11,7 +11,7 @@ namespace TechnoTest.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-            builder.UseNpgsql("Host=localhost;Port=5432;Database=TechnoTest;Username=postgres;Password=Svyatoslav2005vecrfnvecrfn");
+            builder.UseNpgsql(Environment.GetEnvironmentVariable("ConnectionStringDB"));
         }
     }
 }
