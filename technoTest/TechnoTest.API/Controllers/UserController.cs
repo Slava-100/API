@@ -55,12 +55,12 @@ namespace TechnoTest.API.Controllers
             }
         }
 
-        [HttpDelete("{userId}")]
-        public async Task<IActionResult> DeleteUserAsync([FromRoute] int userId)
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteUserAsync([FromRoute] int Id)
         {
             try
             {
-                var callback = await _userManager.DeleteUserAsync(userId);
+                var callback = await _userManager.DeleteUserAsync(Id);
                 var result = _mapper.Map<UserResponseDto>(callback);
 
                 return Ok(result);
@@ -71,12 +71,12 @@ namespace TechnoTest.API.Controllers
             }
         }
 
-        [HttpGet("{userId}")]
-        public async Task<IActionResult> GetUserByIdAsync([FromRoute] int userId)
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetUserByIdAsync([FromRoute] int Id)
         {
             try
             {
-                var user = await _userManager.GetUserByIdAsync(userId);
+                var user = await _userManager.GetUserByIdAsync(Id);
                 var result = _mapper.Map<UserResponseDto>(user);
 
                 return Ok(result);
