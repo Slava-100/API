@@ -9,7 +9,7 @@ using TechnoTest.API.Models;
 
 namespace TechnoTest.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]/")]
     [ApiController]
     public class Token : ControllerBase
     {
