@@ -21,7 +21,7 @@ namespace TechnoTest.API.Controllers
         }
 
         [HttpGet("")]
-        public async Task<string> GetToken()
+        public async Task<IActionResult> GetToken()
         {
             List<Claim> claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.Name, "Svyat"));
@@ -39,7 +39,7 @@ namespace TechnoTest.API.Controllers
                         signingCredentials: new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256)
                 );
 
-            return new JwtSecurityTokenHandler().WriteToken(jwt);
+            return Ok(new JwtSecurityTokenHandler().WriteToken(jwt));
         }
     }
 }
