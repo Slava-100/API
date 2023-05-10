@@ -1,4 +1,5 @@
-﻿using technoTest.API.Models.UserGroup.Response;
+﻿using System.ComponentModel.DataAnnotations;
+using technoTest.API.Models.UserGroup.Response;
 using technoTest.API.Models.UserState.Response;
 
 namespace technoTest.API.Models.User.Request

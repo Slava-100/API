@@ -1,4 +1,5 @@
 using TechnoTest.API.MapperProfiles;
+using TechnoTest.API.Validation;
 using TechnoTest.BLL;
 using TechnoTest.BLL.Interfaces;
 using TechnoTest.BLL.MapperProfiles;
@@ -17,6 +18,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserManager, UserManager>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddSingleton<Context>();
+builder.Services.AddScoped<UserValidator>();
 
 builder.Services.AddAutoMapper(typeof(MapperApiUserProfile), typeof(MapperBLLUserProfile));
 

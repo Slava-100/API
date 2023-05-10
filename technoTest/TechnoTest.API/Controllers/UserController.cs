@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using technoTest.API.Models.User.Request;
 using technoTest.API.Models.User.Response;
+using TechnoTest.API.Validation;
 using TechnoTest.BLL.Interfaces;
 using TechnoTest.BLL.Models;
 
@@ -14,11 +16,13 @@ namespace TechnoTest.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IUserManager _userManager;
+        private readonly UserValidator _userValidator;
 
-        public UserController(IMapper mapper, IUserManager userManager)
+        public UserController(IMapper mapper, IUserManager userManager, UserValidator userValidator)
         {
             _mapper = mapper;
             _userManager = userManager;
+            _userValidator = userValidator;
         }
 
         [HttpGet("")]
@@ -42,6 +46,12 @@ namespace TechnoTest.API.Controllers
         {
             try
             {
+                var validationResult = _userValidator.Validate(userAdd);
+                if (!validationResult.IsValid)
+                {
+                    return BadRequest(validationResult.Errors);
+                }
+
                 var user = _mapper.Map<User>(userAdd);
                 var callback = await _userManager.CreateUserAsync(user);
                 var result = _mapper.Map<UserResponseDto>(callback);
