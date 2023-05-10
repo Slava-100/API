@@ -9,6 +9,9 @@ namespace TechnoTest.API.Validation
         {
             RuleFor(request => request.Password)
                 .NotEmpty().WithMessage("Password is emty!");
+            
+            RuleFor(request => request.Login)
+                .NotEmpty().WithMessage("Login is emty!");
         }
     }
 }
